@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Warmup: practise speaking and singing</title>
+  <meta name="description" content="Record yourself speaking a phrase or singing an exercise and get feedback on pronunciation, pace and pitch. Runs on Pollinations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Warmup</span>
+    </div>
+    <nav class="modes" role="tablist" aria-label="Practice mode">
+      <button role="tab" id="tab-speak" aria-controls="panel-speak" aria-selected="true">Speak</button>
+      <button role="tab" id="tab-sing" aria-controls="panel-sing" aria-selected="false" tabindex="-1">Sing</button>
+    </nav>
+    <div class="account" id="account"></div>
+  </header>
+
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+
+  <main>
+    <!-- SPEAK -->
+    <section id="panel-speak" role="tabpanel" aria-labelledby="tab-speak" class="panel">
+      <div class="intro">
+        <h1>Say it, then hear what landed.</h1>
+        <p>Pick a phrase, listen to it, record yourself, and see which words came through, how fast you spoke, and what to fix.</p>
+      </div>
+
+      <div class="setup">
+        <label>Language
+          <select id="sp-lang"></select>
+        </label>
+        <label>Level
+          <select id="sp-level">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </label>
+        <label>Voice
+          <select id="sp-voice">
+            <option>nova</option><option>alloy</option><option>echo</option>
+            <option>fable</option><option>onyx</option><option>shimmer</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="phrase">
+        <label for="sp-text" class="phrase-label">Your phrase</label>
+        <textarea id="sp-text" rows="2" spellcheck="false">She sells seashells by the seashore, but the shells she sells are surely seashells.</textarea>
+        <div class="phrase-actions">
+          <button class="btn" id="sp-new">New phrase</button>
+          <button class="btn" id="sp-listen">Hear it</button>
+        </div>
+      </div>
+
+      <div class="stage">
+        <button class="rec" id="sp-rec" aria-pressed="false">
+          <span class="rec-dot" aria-hidden="true"></span>
+          <span class="rec-label">Record</span>
+        </button>
+        <canvas id="sp-meter" class="meter" aria-hidden="true"></canvas>
+        <span class="timer" id="sp-timer" aria-live="off">0:00</span>
+      </div>
+
+      <div id="sp-result" class="result" hidden>
+        <div class="result-head">
+          <h2>Your take</h2>
+          <audio id="sp-audio" controls></audio>
+        </div>
+
+        <div class="facts" id="sp-facts"></div>
+
+        <h3>Word by word</h3>
+        <p class="hint">Tap a word you said to hear that moment of your recording.</p>
+        <p class="words" id="sp-words"></p>
+        <p class="legend">
+          <span class="w ok">clear</span>
+          <span class="w close">close</span>
+          <span class="w miss">missed</span>
+          <span class="w extra">added</span>
+        </p>
+
+        <h3>What you said</h3>
+        <p class="heard" id="sp-heard"></p>
+
+        <h3>Coach notes</h3>
+        <div id="sp-coach" class="coach"></div>
+      </div>
+    </section>
+
+    <!-- SING -->
+    <section id="panel-sing" role="tabpanel" aria-labelledby="tab-sing" class="panel" hidden>
+      <div class="intro">
+        <h1>Sing it back, note for note.</h1>
+        <p>Listen to a short pattern, then sing it. Your pitch is tracked live against the target, and each note is scored in cents.</p>
+      </div>
+
+      <div class="setup">
+        <label>Exercise
+          <select id="sg-pattern"></select>
+        </label>
+        <label>Starting note
+          <select id="sg-root"></select>
+        </label>
+        <label>Tempo
+          <select id="sg-tempo">
+            <option value="0.9">Slow</option>
+            <option value="0.65" selected>Medium</option>
+            <option value="0.45">Quick</option>
+          </select>
+        </label>
+        <label class="check">
+          <input type="checkbox" id="sg-guide"> Play a quiet guide while I sing (use headphones)
+        </label>
+      </div>
+
+      <div class="stage">
+        <button class="rec" id="sg-start" aria-pressed="false">
+          <span class="rec-dot" aria-hidden="true"></span>
+          <span class="rec-label">Start</span>
+        </button>
+        <p class="phase" id="sg-phase">Press start. You'll hear the pattern once, then it's your turn.</p>
+      </div>
+
+      <figure class="roll">
+        <canvas id="sg-canvas" aria-label="Pitch chart: target notes as bars, your voice as a line"></canvas>
+        <figcaption><span class="now" id="sg-now">–</span></figcaption>
+      </figure>
+
+      <div id="sg-result" class="result" hidden>
+        <div class="result-head">
+          <h2>Your take</h2>
+          <audio id="sg-audio" controls></audio>
+        </div>
+        <div class="facts" id="sg-facts"></div>
+        <h3>Note by note</h3>
+        <ol class="notes" id="sg-notes"></ol>
+        <h3>Coach notes</h3>
+        <div id="sg-coach" class="coach">
+          <button class="btn" id="sg-ask">Ask the coach about tone and breath</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Runs on <a href="https://pollinations.ai" target="_blank" rel="noopener">Pollinations</a>. Recordings go only to Pollinations models for analysis, and usage is paid from your own Pollen balance. Pitch tracking runs in your browser.</p>
+  </footer>
+
+  <dialog id="key-dialog">
+    <form method="dialog">
+      <h2>Use an API key</h2>
+      <p>Paste a secret key from <a href="https://enter.pollinations.ai/keys" target="_blank" rel="noopener">enter.pollinations.ai/keys</a>. It stays in this tab only.</p>
+      <input id="key-input" type="password" placeholder="sk_..." autocomplete="off">
+      <div class="dialog-actions">
+        <button value="cancel" class="btn">Cancel</button>
+        <button value="ok" class="btn primary">Use key</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
