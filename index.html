@@ -152,20 +152,11 @@
   </main>
 
   <footer class="foot">
-    <p>Runs on <a href="https://pollinations.ai" target="_blank" rel="noopener">Pollinations</a>. Recordings go only to Pollinations models for analysis, and usage is paid from your own Pollen balance. Pitch tracking runs in your browser.</p>
+    <a class="badge" href="https://pollinations.ai/?ref=badge" target="_blank" rel="noopener">
+      <img src="https://raw.githubusercontent.com/pollinations/pollinations/main/packages/ui/src/brand/badge-made-with.svg" alt="Made with pollinations.ai" height="28">
+    </a>
+    <p>Recordings go only to Pollinations models for analysis, and usage is paid from your own Pollen balance. Pitch tracking runs in your browser.</p>
   </footer>
-
-  <dialog id="key-dialog">
-    <form method="dialog">
-      <h2>Use an API key</h2>
-      <p>Paste a secret key from <a href="https://enter.pollinations.ai/keys" target="_blank" rel="noopener">enter.pollinations.ai/keys</a>. It stays in this tab only.</p>
-      <input id="key-input" type="password" placeholder="sk_..." autocomplete="off">
-      <div class="dialog-actions">
-        <button value="cancel" class="btn">Cancel</button>
-        <button value="ok" class="btn primary">Use key</button>
-      </div>
-    </form>
-  </dialog>
 
   <script type="module" src="js/app.js"></script>
 </body>

@@ -1,5 +1,7 @@
 # Warmup
 
+[![Made with pollinations.ai](https://raw.githubusercontent.com/pollinations/pollinations/main/packages/ui/src/brand/badge-made-with.svg)](https://pollinations.ai/?ref=badge)
+
 Practise speaking or singing and get feedback. Built for the Pollinations quest
 [pollinations/pollinations#20022](https://github.com/pollinations/pollinations/issues/20022).
 

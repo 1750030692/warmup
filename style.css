@@ -154,12 +154,10 @@ button.w:hover { background: var(--lane); }
 .notes span { font-size: .85rem; color: var(--ink-soft); }
 
 .foot { padding: 1.5rem clamp(1rem, 4vw, 3rem); font-size: .9rem; color: var(--ink-soft); }
-.foot p { max-width: 75ch; margin: 0; }
+.foot p { max-width: 75ch; margin: .6rem 0 0; }
+.badge { display: inline-block; }
+.badge img { display: block; }
 
-dialog { border: 0; border-radius: var(--radius-lg); padding: 1.5rem; max-width: 26rem; background: var(--panel); color: var(--ink); }
-dialog::backdrop { background: #14202b88; }
-dialog input { width: 100%; margin-top: .5rem; }
-.dialog-actions { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .rec[aria-pressed="true"] .rec-dot { animation: none; }
