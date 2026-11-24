@@ -46,7 +46,7 @@ export function initSpeak({ say, needKey }) {
       }, {
         role: "user",
         content: `One ${level.value} ${langName(lang.value)} sentence for speaking practice, 8 to 16 words, natural and everyday, with a few sounds learners find tricky. Make it different from: "${text.value}"`,
-      }], { temperature: 0.9 });
+      }]);
       text.value = out.trim().replace(/^["“'«]|["”'»]$/g, "");
       say("");
     } catch (e) { fail(e); }

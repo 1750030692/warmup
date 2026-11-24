@@ -5,8 +5,10 @@ const GEN = "https://gen.pollinations.ai";
 
 export const MODELS = {
   transcribe: "openai/whisper-large-v3", // word timestamps
-  coach: "google/gemini-3.8-flash",      // listens to the audio itself
-  text: "google/gemini-3.8-flash",       // phrase generation
+  // All models here are payable from Quest balance (paid_only: false in
+  // /text/models and /audio/models), so users without paid Pollen can use the app.
+  coach: "openai/gpt-audio-mini",        // listens to the audio itself
+  text: "openai/gpt-5.4-nano",           // phrase generation
   tts: "openai/tts-1",
 };
 
@@ -33,11 +35,11 @@ async function request(path, init = {}, { needsKey = false } = {}) {
   return res;
 }
 
-export async function chat(messages, { model = MODELS.text, needsKey = false, temperature = 0.4 } = {}) {
+export async function chat(messages, { model = MODELS.text, needsKey = false } = {}) {
   const res = await request("/v1/chat/completions", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model, messages, temperature }),
+    body: JSON.stringify({ model, messages }),
   }, { needsKey });
   const data = await res.json();
   return data.choices?.[0]?.message?.content ?? "";
@@ -104,6 +106,6 @@ export async function listen(wavBlob, prompt) {
       { type: "text", text: prompt },
       { type: "input_audio", input_audio: { data, format: "wav" } },
     ],
-  }], { model: MODELS.coach, needsKey: true, temperature: 0.3 });
+  }], { model: MODELS.coach, needsKey: true });
   return parseJson(text);
 }

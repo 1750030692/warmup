@@ -13,13 +13,13 @@ Frontend only: static HTML, CSS and ES modules, with no build step and no server
 - Record yourself. `openai/whisper-large-v3` transcribes the take with word timestamps.
 - Each word in the phrase is marked as clear, close, missed or added. Tap a word to replay that moment of your recording.
 - Shows words per minute and the number of long pauses.
-- `google/gemini-3.8-flash` listens to the audio itself and gives pronunciation notes for specific sounds, plus one sentence on rhythm and pace.
+- `openai/gpt-audio-mini` listens to the audio itself and gives pronunciation notes for specific sounds, plus one sentence on rhythm and pace.
 
 **Sing**
 - Exercises: five-note scale, arpeggio, thirds, octave leap, one long note, or free singing.
 - You hear the pattern, a count-in plays, and then you sing it. Your pitch is drawn live against the target notes, coloured green, amber or red by how far off you are.
 - Pitch tracking runs in the browser (YIN), so scoring costs nothing. Each note gets a cents offset and a wobble value, and the take gets an overall sharp or flat tendency. If you sing in a different octave from the guide, the take is scored in your octave.
-- "Ask the coach" sends the recording and the measured numbers to Gemini for feedback on tone, breath and onsets.
+- "Ask the coach" sends the recording and the measured numbers to `openai/gpt-audio-mini` for feedback on tone, breath and onsets.
 
 ## Payment
 
