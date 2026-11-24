@@ -4,10 +4,9 @@
 
 const AUTH = "https://enter.pollinations.ai";
 
-// Set this to your app's publishable key (pk_...) after registering the app
-// at enter.pollinations.ai, so the consent screen shows the app name and
-// the redirect URI is checked. It works without one.
-export const APP_KEY = "";
+// Publishable App Key (pk_) registered at enter.pollinations.ai. It only
+// identifies the app on the consent screen; it is safe to ship in frontend code.
+export const APP_KEY = "pk_oIHjQHkVNpteJLKa";
 
 const KEY_STORE = "warmup.key";
 const PKCE_STORE = "warmup.pkce";
@@ -22,7 +21,9 @@ const b64url = (buf) =>
   btoa(String.fromCharCode(...new Uint8Array(buf)))
     .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 
-const redirectUri = () => location.origin + location.pathname;
+// Must match the registered Redirect URI exactly, so /warmup/index.html
+// is sent as /warmup/.
+const redirectUri = () => location.origin + location.pathname.replace(/index\.html$/, "");
 
 export async function login() {
   const verifier = b64url(crypto.getRandomValues(new Uint8Array(32)));

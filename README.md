@@ -28,8 +28,8 @@ Users connect with Pollinations Pay (OAuth code flow with PKCE, see
 so every call is paid from their own balance. The key is kept in `sessionStorage` only.
 The consent link asks for a 2-pollen budget and a 7-day key.
 
-Before publishing, register the app at enter.pollinations.ai, add the live URL as a
-redirect URI, and put the `pk_` key in `APP_KEY` in `js/auth.js`.
+The app is registered at enter.pollinations.ai with the redirect URI
+`https://1750030692.github.io/warmup/`. Its publishable key is `APP_KEY` in `js/auth.js`.
 
 ## Run locally
 
